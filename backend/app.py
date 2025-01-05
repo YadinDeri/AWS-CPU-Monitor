@@ -36,10 +36,8 @@ def get_cpu_usage():
         max_period = int(total_duration / 1440)
         effective_period = max(interval, max_period)
 
-        # Round effective_period to the nearest multiple of 60
         effective_period = max(60, round(effective_period / 60) * 60)
 
-        # Query CloudWatch for CPU Utilization
         response = cloudwatch.get_metric_statistics(
             Namespace='AWS/EC2',
             MetricName='CPUUtilization',
